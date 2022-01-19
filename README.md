@@ -15,6 +15,11 @@ $ docker compose up
 
 App will run on http://127.0.0.1:5000
  ```
+ ##Pytest
+ ```bash
+ To run pytest on docker
+ $ docker exec myapp pytest
+ ```
 | Parameter | Example 
 | - | - 
 | `environment` | `localhost:5000`
