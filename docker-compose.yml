@@ -1,0 +1,20 @@
+version: "2"
+services:
+  db:
+    container_name: db
+    image: mysql
+    expose:
+      - 3306
+    ports:
+      - "32000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: p@ssword
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+  app:
+    container_name: myapp
+    build: ./app
+    links:
+      - db
+    ports:
+      - "5000:5000"

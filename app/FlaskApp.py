@@ -3,12 +3,19 @@ from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 import mysql.connector
 import jwt
+from time import sleep
 
 
 app = Flask(__name__)
-
-mydb = mysql.connector.connect(host='127.0.0.1',user='root', password = "p@ssword")
-mycursor = mydb.cursor()
+while(True):
+    try:
+        mydb = mysql.connector.connect(host='db',user='root', password = "p@ssword",database="Python")
+        mycursor = mydb.cursor()
+        break
+    except:
+        pass
+    
+    
 
 @app.route("/")
 def hello():
@@ -87,6 +94,5 @@ def decode_jwt(encrypted):
     return jwt.decode(encrypted,key='JWT_p@ssword',algorithms=["HS256"])
 
 def Run_flask():
-    mycursor.execute("use Python;")
-    app.run()
+    app.run(host="0.0.0.0")
 
