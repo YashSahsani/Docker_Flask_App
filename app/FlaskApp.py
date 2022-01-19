@@ -29,6 +29,7 @@ def GetUser():
     myresult =  mycursor.fetchall()
     print()
     if(len(myresult)==0):
+
         return "User doesn't exit"
     else:
         data={'uid':myresult[0][0],'name':myresult[0][1],'age':myresult[0][3],'city':myresult[0][2]}
@@ -54,6 +55,8 @@ def EditUSer(uid):
     print(content)
     mycursor.execute("SELECT * FROM user WHERE uid="+uid)
     myresult =  mycursor.fetchall()
+    if(len(myresult)==0):
+        return "User doesn't exit"
     old_data ={'uid':myresult[0][0],'name':myresult[0][1],'age':myresult[0][3],'city':myresult[0][2]}
     new_data_keys = list(content.keys())
     new_data_value= list(content.values())
